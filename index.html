@@ -1,0 +1,440 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>明日方舟软糖需求资料整理总表</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f8fb;
+      --text: #20242c;
+      --muted: #5e6673;
+      --line: #d9dee8;
+      --panel: #ffffff;
+      --accent: #2f6fed;
+      --accent-soft: #eaf1ff;
+      --danger: #b42318;
+      --ok: #147d4f;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      line-height: 1.6;
+    }
+
+    main {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 32px auto;
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      font-size: 28px;
+      line-height: 1.25;
+    }
+
+    h2 {
+      margin: 28px 0 12px;
+      font-size: 20px;
+      color: var(--muted);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin-bottom: 8px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 960px;
+      border-collapse: collapse;
+      vertical-align: top;
+    }
+
+    th, td {
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th:last-child, td:last-child { border-right: 0; }
+    tr:last-child td { border-bottom: 0; }
+
+    th {
+      background: #f0f3f8;
+      font-weight: 650;
+      white-space: nowrap;
+    }
+
+    td:first-child {
+      width: 150px;
+      font-weight: 650;
+    }
+
+    td:nth-child(2) { width: 260px; }
+    td:nth-child(3) { width: 300px; }
+
+    img {
+      display: block;
+      max-width: 220px;
+      height: auto;
+      margin-top: 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      margin: 0 0 8px;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--accent);
+    }
+
+    textarea {
+      display: block;
+      width: 100%;
+      min-height: 58px;
+      margin: 0 0 12px;
+      padding: 8px 10px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font: inherit;
+      background: #fff;
+    }
+
+    textarea:focus, input[type="checkbox"]:focus-visible {
+      outline: 3px solid var(--accent-soft);
+      border-color: var(--accent);
+    }
+
+    .actions {
+      position: sticky;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 16px;
+      padding: 12px 0;
+      background: rgba(247, 248, 251, 0.94);
+      backdrop-filter: blur(8px);
+    }
+
+    button {
+      min-height: 40px;
+      padding: 0 16px;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      color: #fff;
+      background: var(--accent);
+      font: inherit;
+      font-weight: 650;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .status {
+      min-height: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .status.ok { color: var(--ok); }
+    .status.error { color: var(--danger); }
+
+    @media (max-width: 720px) {
+      main {
+        width: min(100vw - 20px, 1180px);
+        margin: 18px auto;
+      }
+
+      .actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      h1 { font-size: 22px; }
+      h2 { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+  <h1>明日方舟软糖需求资料整理总表（34）</h1>
+  <h2>谢拉格（3）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>名称</th><th>资料</th><th>需求备注</th><th>沟通备注</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>圣聆初雪 (Pramanix the Prerita)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/b/be/dbck9ftyk9kprif5e6vhm7iv1gokr58.png" alt="圣聆初雪 原皮"></td>
+          <td><a href="https://wiki.biligame.com/arknights/圣聆初雪" target="_blank" rel="noreferrer">资料页</a> <br> 看老师的店铺图好像没有尾巴，可以做尾巴么？</td>
+          <td><label> <input type="checkbox" data-key="pramanix_the_prerita_confirm"> 能做！</label><br><textarea data-key="pramanix_the_prerita_price_note" placeholder="价格/备注"></textarea><br><label><input type="checkbox" data-key="pramanix_the_prerita_extra_confirm" > 能做，带大尾巴！</label><br><textarea data-key="pramanix_the_prerita_extra_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="pramanix_the_prerita_x"> 遗憾离场</label></td>
+        </tr>
+        <tr>
+          <td>初雪 (Pramanix)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/7/72/f6cnedmrg2wji26n88u8cyx4hmmbs73.png" alt="初雪 原皮"></td>
+          <td><a href="https://wiki.biligame.com/arknights/初雪" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><label> <input type="checkbox" data-key="pramanix_confirm"> 能做！</label><br><textarea data-key="pramanix_price_note" placeholder="价格/备注"></textarea><br><label><input type="checkbox" data-key="pramanix_extra_confirm" > 能做，带大尾巴！</label><br><textarea data-key="pramanix_extra_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="pramanix_x"> 遗憾离场</label></td>
+        </tr>
+        <tr>
+          <td>耶拉 (Kjera)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/1/12/k7mg8siasqjru61gzov40rsticys8k2.png" alt="初雪 原皮"></td>
+          <td><a href="https://wiki.biligame.com/arknights/耶拉" target="_blank" rel="noreferrer">资料页</a> <br> 耶拉也辛苦老师确认能不能做一个比较明显的尾巴</td>
+          <td><label> <input type="checkbox" data-key="kjera_confirm"> 能做！</label><br><textarea data-key="kjera_price_note" placeholder="价格/备注"></textarea><br><label><input type="checkbox" data-key="kjera_extra_confirm" > 能做，带尾巴！</label><br><textarea data-key="kjera_extra_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="kjera_x"> 遗憾离场</label></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h2>深海猎人（6）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>名称</th><th>资料</th><th>需求备注</th><th>沟通备注</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>斯卡蒂 (Skadi)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/1/1d/qygfq794gfvyd4amopn94zl4ex2zsf5.png" alt="Skadi 原皮"></td>
+          <td><a href="https://wiki.biligame.com/arknights/%E6%96%AF%E5%8D%A1%E8%92%82" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><label> <input type="checkbox" data-key="skadi_confirm"> 能做！</label><br><textarea data-key="skadi_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="skadi_x"> 遗憾离场</label></td>
+        </tr>
+        <tr>
+          <td>浊心斯卡蒂 (Skadi the Corrupting Heart)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/2/2c/2v07otjhojakcmp08h5c0hyzscxqvxl.png" alt="Skadi the Corrupting Heart 原皮"></td>
+          <td><a href="https://wiki.biligame.com/arknights/%E6%B5%8A%E5%BF%83%E6%96%AF%E5%8D%A1%E8%92%82" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><label> <input type="checkbox" data-key="skadi_the_corrupting_heart_confirm"> 能做！</label><br><textarea data-key="skadi_the_corrupting_heart_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="skadi_the_corrupting_heart_x"> 遗憾离场</label></td>
+        </tr>
+        <tr>
+          <td>幽灵鲨 (Specter)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/3/34/2ciashrlz9m3vuz9pwlu9lh7z4mmqaw.png" alt="Specter 原皮"></td>
+          <td><a href="https://wiki.biligame.com/arknights/%E5%B9%BD%E7%81%B5%E9%B2%A8" target="_blank" rel="noreferrer">资料页</a> <br> 帽子能不能有两边的“鱼鳍”</td>
+          <td><label> <input type="checkbox" data-key="specter_confirm"> 能做！</label><br><textarea data-key="specter_price_note" placeholder="价格/备注"></textarea><br><label><input type="checkbox" data-key="specter_extra_confirm" > 能做，带“鱼鳍”</label><br><textarea data-key="specter_extra_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="specter_x"> 遗憾离场</label></td>
+        </tr>
+        <tr>
+          <td>归溟幽灵鲨 (Specter the Unchained)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/a/a1/kboom0culj31ak43tq186q7167jo5nu.png" alt="Specter the Unchained 原皮"></td>
+          <td><a href="https://wiki.biligame.com/arknights/%E5%BD%92%E6%BA%9F%E5%B9%BD%E7%81%B5%E9%B2%A8" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><label> <input type="checkbox" data-key="specter_the_unchained_confirm"> 能做！</label><br><textarea data-key="specter_the_unchained_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="specter_the_unchained_x"> 遗憾离场</label></td>
+        </tr>
+        <tr>
+          <td>歌蕾蒂娅 (Gladiia)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/8/83/hymnabevpcdpqqfsrb1qikvoctvx4oe.png" alt="Gladiia 原皮"></td>
+          <td><a href="https://wiki.biligame.com/arknights/%E6%AD%8C%E8%95%BE%E8%92%82%E5%A8%85" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><label> <input type="checkbox" data-key="gladiia_confirm"> 能做！</label><br><textarea data-key="gladiia_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="gladiia_x"> 遗憾离场</label></td>
+        </tr>
+        <tr>
+          <td>乌尔比安 (Ulpianus)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/3/3e/66vfs81vvu00l09pcgnps26f28vmbzc.png" alt="Ulpianus 原皮"></td>
+          <td><a href="https://wiki.biligame.com/arknights/%E4%B9%8C%E5%B0%94%E6%AF%94%E5%AE%89" target="_blank" rel="noreferrer">资料页</a> <br> 能不能做武器？</td>
+          <td><label> <input type="checkbox" data-key="ulpianus_confirm"> 能做！</label><br><textarea data-key="ulpianus_price_note" placeholder="价格/备注"></textarea><br><label><input type="checkbox" data-key="ulpianus_extra_confirm" > 能做，带船锚！</label><br><textarea data-key="ulpianus_extra_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="ulpianus_x"> 遗憾离场</label></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h2>拉特兰（8）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>名称</th><th>资料</th><th>需求备注</th><th>沟通备注</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>新约能天使 (Exusiai the New Covenant)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/5/51/mcykogoq3phi70qshmt51bajjf5fblq.png" alt="新约能天使 原皮"></td>
+          <td><a href="https://wiki.biligame.com/arknights/%E6%96%B0%E7%BA%A6%E8%83%BD%E5%A4%A9%E4%BD%BF" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><label> <input type="checkbox" data-key="exusiai_the_new_covenant_default_confirm"> 能做！</label><br><textarea data-key="exusiai_the_new_covenant_default_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="exusiai_the_new_covenant_default_x"> 遗憾离场</label></td>
+        </tr>
+        <tr>
+          <td>蕾缪安 (Lemuen)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/5/5e/fk6207iumwrkw0da7mukqhzt1gga3ac.png" alt="蕾缪安 原皮"></td>
+          <td><a href="https://wiki.biligame.com/arknights/%E8%95%BE%E7%BC%AA%E5%AE%89" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><label> <input type="checkbox" data-key="lemuen_default_confirm"> 能做！</label><br><textarea data-key="lemuen_default_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="lemuen_default_x"> 遗憾离场</label></td>
+        </tr>
+        <tr>
+          <td>莫斯提马 (Mostima)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/7/7c/djqqx01lhr0faf3yncor18p0ltwwbyt.png" alt="莫斯提马 原皮"></td>
+          <td><a href="https://wiki.biligame.com/arknights/%E8%8E%AB%E6%96%AF%E6%8F%90%E9%A9%AC" target="_blank" rel="noreferrer">资料页</a> <br> 光环需要换黑色</td>
+          <td><label> <input type="checkbox" data-key="mostima_default_confirm"> 能做！</label><br><textarea data-key="mostima_default_price_note" placeholder="价格/备注"></textarea><br><label><input type="checkbox" data-key="mostima_default_black_halo_confirm" > 能换黑色！</label><br><textarea data-key="mostima_default_black_halo_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="mostima_default_x"> 遗憾离场</label></td>
+        </tr>
+        <tr>
+          <td>菲亚梅塔 (Fiammetta)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/2/24/dx1kba5fwygcoqn38xfcrx0qknsxowz.png" alt="菲亚梅塔 原皮"></td>
+          <td><a href="https://wiki.biligame.com/arknights/%E8%8F%B2%E4%BA%9A%E6%A2%85%E5%A1%94" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><label> <input type="checkbox" data-key="fiammetta_default_confirm"> 能做！</label><br><textarea data-key="fiammetta_default_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="fiammetta_default_x"> 遗憾离场</label></td>
+        </tr>
+        <tr>
+          <td>新约能天使 (Exusiai the New Covenant)</td>
+          <td><strong>寻翼之歌</strong><br><img src="https://patchwiki.biligame.com/images/arknights/2/2d/hay5ubcjsg43lgpj6y8whqrof7aoaav.png" alt="新约能天使 寻翼之歌"></td>
+          <td><a href="https://wiki.biligame.com/arknights/%E6%96%B0%E7%BA%A6%E8%83%BD%E5%A4%A9%E4%BD%BF" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><label> <input type="checkbox" data-key="exusiai_the_new_covenant_wing_song_confirm"> 能做！</label><br><textarea data-key="exusiai_the_new_covenant_wing_song_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="exusiai_the_new_covenant_wing_song_x"> 遗憾离场</label></td>
+        </tr>
+        <tr>
+          <td>蕾缪安 (Lemuen)</td>
+          <td><strong>暮星安魂曲</strong><br><img src="https://patchwiki.biligame.com/images/arknights/2/2e/b0kdja5jrqvn9e0emfuy6tnres5mnyy.png" alt="蕾缪安 暮星安魂曲"></td>
+          <td><a href="https://wiki.biligame.com/arknights/%E8%95%BE%E7%BC%AA%E5%AE%89" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><label> <input type="checkbox" data-key="lemuen_requiem_confirm"> 能做！</label><br><textarea data-key="lemuen_requiem_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="lemuen_requiem_x"> 遗憾离场</label></td>
+        </tr>
+        <tr>
+          <td>莫斯提马 (Mostima)</td>
+          <td><strong>幻语乐痕</strong><br><img src="https://patchwiki.biligame.com/images/arknights/d/d3/dl1dq7zlcwxhdg5bkky2hkpyfiqfo60.png" alt="莫斯提马 幻语乐痕"></td>
+          <td><a href="https://wiki.biligame.com/arknights/%E8%8E%AB%E6%96%AF%E6%8F%90%E9%A9%AC" target="_blank" rel="noreferrer">资料页</a> <br> 光环需要换黑色</td>
+          <td><label> <input type="checkbox" data-key="mostima_music_trace_confirm"> 能做！</label><br><textarea data-key="mostima_music_trace_price_note" placeholder="价格/备注"></textarea><br><label><input type="checkbox" data-key="mostima_music_trace_black_halo_confirm" > 能换黑色！</label><br><textarea data-key="mostima_music_trace_black_halo_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="mostima_music_trace_x"> 遗憾离场</label></td>
+        </tr>
+        <tr>
+          <td>菲亚梅塔 (Fiammetta)</td>
+          <td><strong>至圣誓言</strong><br><img src="https://patchwiki.biligame.com/images/arknights/1/13/f4c4cc3tjqqxfpn0813pfforiosfe08.png" alt="菲亚梅塔 至圣誓言"></td>
+          <td><a href="https://wiki.biligame.com/arknights/%E8%8F%B2%E4%BA%9A%E6%A2%85%E5%A1%94" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><label> <input type="checkbox" data-key="fiammetta_holy_vow_confirm"> 能做！</label><br><textarea data-key="fiammetta_holy_vow_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="fiammetta_holy_vow_x"> 遗憾离场</label></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    <div class="actions">
+      <div class="status" id="submitStatus" role="status"></div>
+      <button id="submitQuote" type="button">保存到PRTS（不是</button>
+    </div>
+  </main>
+
+  <script>
+    const supabaseConfig = {
+      url: "",
+      anonKey: "",
+      tableName: "quote_submissions"
+    };
+
+    const storagePrefix = "arknight-grapples-quote:";
+    const submitButton = document.querySelector("#submitQuote");
+    const submitStatus = document.querySelector("#submitStatus");
+
+    document.querySelectorAll("[data-key]").forEach((field) => {
+      const key = storagePrefix + field.dataset.key;
+      const saved = localStorage.getItem(key);
+
+      if (saved !== null) {
+        if (field.type === "checkbox") {
+          field.checked = saved === "true";
+        } else {
+          field.value = saved;
+        }
+      }
+
+      field.addEventListener("input", () => {
+        const value = field.type === "checkbox" ? String(field.checked) : field.value;
+        localStorage.setItem(key, value);
+      });
+    });
+
+    function setStatus(message, type = "") {
+      submitStatus.textContent = message;
+      submitStatus.className = `status ${type}`.trim();
+    }
+
+    function collectRow(row) {
+      const cells = row.querySelectorAll("td");
+      const values = {};
+
+      row.querySelectorAll("[data-key]").forEach((field) => {
+        values[field.dataset.key] = field.type === "checkbox" ? field.checked : field.value.trim();
+      });
+
+      const image = cells[1]?.querySelector("img");
+      const reference = cells[2]?.querySelector("a");
+      const skin = cells[1]?.querySelector("strong")?.textContent.trim() || "";
+
+      return {
+        operator: cells[0]?.textContent.trim() || "",
+        skin,
+        reference_url: reference?.href || "",
+        image_url: image?.src || "",
+        need_note: cells[2]?.textContent.trim() || "",
+        values
+      };
+    }
+
+    function collectPayload() {
+      return {
+        teacher_name: "固定报价人",
+        teacher_contact: "",
+        source_page: location.pathname,
+        items: Array.from(document.querySelectorAll("tbody tr")).map(collectRow),
+        submitted_at: new Date().toISOString()
+      };
+    }
+
+    async function submitToSupabase(payload) {
+      const endpoint = `${supabaseConfig.url}/rest/v1/${supabaseConfig.tableName}`;
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          apikey: supabaseConfig.anonKey,
+          Authorization: `Bearer ${supabaseConfig.anonKey}`,
+          "Content-Type": "application/json",
+          Prefer: "return=minimal"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`提交失败：${response.status}`);
+      }
+    }
+
+    submitButton.addEventListener("click", async () => {
+      const payload = collectPayload();
+      submitButton.disabled = true;
+      setStatus("正在提交...");
+
+      try {
+        if (supabaseConfig.url && supabaseConfig.anonKey) {
+          await submitToSupabase(payload);
+          setStatus("提交成功，已经保存到后台。", "ok");
+        } else {
+          localStorage.setItem(`${storagePrefix}last_submission`, JSON.stringify(payload));
+          setStatus("已保存到本机。填入 Supabase 配置后会提交到后台。", "ok");
+        }
+      } catch (error) {
+        setStatus(error.message || "提交失败，请稍后再试。", "error");
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
+
