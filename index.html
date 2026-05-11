@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -40,9 +40,34 @@
     }
 
     h2 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
       margin: 28px 0 12px;
       font-size: 20px;
       color: var(--muted);
+    }
+
+    h2.section-toggle {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    h2.section-toggle::after {
+      content: "收起";
+      flex: 0 0 auto;
+      padding: 2px 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--muted);
+      background: var(--panel);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    h2.section-toggle.is-collapsed::after {
+      content: "展开";
     }
 
     .table-wrap {
@@ -51,6 +76,42 @@
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 8px;
+    }
+
+    .intro-note {
+      margin: 0 0 20px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--muted);
+    }
+
+    .reference-note {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 420px);
+      gap: 16px;
+      align-items: center;
+      margin: 0 0 14px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--muted);
+    }
+
+    .reference-note strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+
+    .reference-note img {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      cursor: zoom-in;
     }
 
     table {
@@ -85,7 +146,12 @@
     td:nth-child(2) { width: 260px; }
     td:nth-child(3) { width: 300px; }
 
-    img {
+    .mobile-skin {
+      display: none;
+    }
+
+    img,
+    video {
       display: block;
       max-width: 220px;
       height: auto;
@@ -93,6 +159,19 @@
       border: 1px solid var(--line);
       border-radius: 6px;
       background: #fff;
+    }
+
+    img {
+      cursor: zoom-in;
+    }
+
+    video {
+      cursor: zoom-in;
+      width: 220px;
+      max-width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      object-position: center 58%;
     }
 
     a {
@@ -121,7 +200,7 @@
       display: block;
       width: 100%;
       min-height: 58px;
-      margin: 0 0 12px;
+      margin: 8px 0 0;
       padding: 8px 10px;
       resize: vertical;
       border: 1px solid var(--line);
@@ -133,6 +212,61 @@
     textarea:focus, input[type="checkbox"]:focus-visible {
       outline: 3px solid var(--accent-soft);
       border-color: var(--accent);
+    }
+
+    .quote-option {
+      margin: 0 0 12px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcff;
+    }
+
+    .quote-option label {
+      margin-bottom: 0;
+      font-weight: 650;
+    }
+
+    .quote-option-reject {
+      margin-top: 14px;
+      background: #fffafa;
+    }
+
+    .quote-option-reject label {
+      color: var(--danger);
+    }
+
+    .overall-note {
+      margin: 20px 0 0;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .overall-note label {
+      display: block;
+      width: 100%;
+      margin: 0;
+      cursor: default;
+    }
+
+    .overall-note-title {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 650;
+    }
+
+    .overall-note-hint {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .overall-note textarea {
+      min-height: 92px;
+      margin: 0;
     }
 
     .actions {
@@ -174,49 +308,220 @@
     .status.ok { color: var(--ok); }
     .status.error { color: var(--danger); }
 
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(16, 20, 28, 0.86);
+    }
+
+    .lightbox.is-open {
+      display: flex;
+    }
+
+    .lightbox img,
+    .lightbox video {
+      max-width: min(100%, 960px);
+      max-height: 86vh;
+      width: auto;
+      height: auto;
+      margin: 0;
+      border: 0;
+      border-radius: 8px;
+      cursor: zoom-out;
+      background: #fff;
+    }
+
+    .lightbox img[hidden],
+    .lightbox video[hidden] {
+      display: none;
+    }
+
+    .lightbox button {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 40px;
+      min-height: 40px;
+      padding: 0;
+      border-color: rgba(255, 255, 255, 0.35);
+      color: #fff;
+      background: rgba(0, 0, 0, 0.28);
+      font-size: 24px;
+      line-height: 1;
+    }
+
     @media (max-width: 720px) {
       main {
-        width: min(100vw - 20px, 1180px);
-        margin: 18px auto;
+        width: min(100vw - 24px, 1180px);
+        margin: 18px auto 96px;
       }
 
       .actions {
+        left: 0;
+        right: 0;
         align-items: stretch;
         flex-direction: column;
+        margin: 0;
+        padding: 12px;
+        border-top: 1px solid var(--line);
       }
 
       h1 { font-size: 22px; }
-      h2 { font-size: 18px; }
+      h2 {
+        font-size: 18px;
+        min-height: 38px;
+      }
+
+      .reference-note {
+        grid-template-columns: 1fr;
+      }
+
+      .table-wrap {
+        overflow: visible;
+        border: 0;
+        background: transparent;
+      }
+
+      table,
+      tbody,
+      tr,
+      td {
+        display: block;
+        width: 100%;
+      }
+
+      table {
+        min-width: 0;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tbody {
+        display: grid;
+        gap: 12px;
+      }
+
+      tr {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+      }
+
+      td {
+        border-right: 0;
+        padding: 12px;
+      }
+
+      td:first-child,
+      td:nth-child(2),
+      td:nth-child(3) {
+        width: 100%;
+      }
+
+      td::before {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 650;
+      }
+
+      td:nth-child(1)::before { content: "人物"; }
+      td:nth-child(2)::before { content: "资料"; }
+      td:nth-child(3)::before { content: "需求备注"; }
+      td:nth-child(4)::before { content: "沟通备注"; }
+
+      tr.mobile-collapsible {
+        position: relative;
+      }
+
+      tr.mobile-collapsible td:first-child {
+        padding-right: 92px;
+        border-bottom: 0;
+      }
+
+      tr.mobile-collapsible td:first-child .mobile-skin {
+        display: block;
+        margin-top: 4px;
+        color: var(--accent);
+        font-size: 14px;
+        font-weight: 650;
+      }
+
+      tr.mobile-collapsible.is-expanded td:first-child .mobile-skin {
+        display: none;
+      }
+
+      tr.mobile-collapsible td:first-child::after {
+        content: "展开";
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        padding: 2px 8px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        color: var(--muted);
+        background: var(--panel);
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      tr.mobile-collapsible.is-expanded td:first-child::after {
+        content: "收起";
+      }
+
+      tr.mobile-collapsible:not(.is-expanded) td:not(:first-child) {
+        display: none;
+      }
+
+      img,
+      video {
+        max-width: 100%;
+        width: min(100%, 320px);
+      }
+
+      button {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <main>
-  <h1>明日方舟软糖需求资料整理总表（34）</h1>
+  <h1>明日方舟可爱勾线需求资料整理总表（54）</h1>
+  <section class="intro-note">老师好！因为我不太了解具体工艺实现，没法准确判断哪些需求合理、哪些细节会比较难做，所以先按照自己理解的难易程度整理了一版。考虑到可爱勾线小人本身体积比较小，部分皮肤细节可能不适合完整表现；如果能保留小人里的重点色块或标志性元素就很好。辛苦老师先帮忙判断哪些能做、哪些不太适合做，并在能做的项目里填写大概价格/备注。最后也麻烦老师看一下整体排期大概什么时候方便；因为数量比较多，也想确认能否按阵营分批制作、分批交付。谢谢老师！</section>
   <h2>谢拉格（3）</h2>
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th>名称</th><th>资料</th><th>需求备注</th><th>沟通备注</th></tr>
+        <tr><th>人物</th><th>资料</th><th>需求备注</th><th>沟通备注</th></tr>
       </thead>
       <tbody>
         <tr>
           <td>圣聆初雪 (Pramanix the Prerita)</td>
-          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/b/be/dbck9ftyk9kprif5e6vhm7iv1gokr58.png" alt="圣聆初雪 原皮"></td>
-          <td><a href="https://wiki.biligame.com/arknights/圣聆初雪" target="_blank" rel="noreferrer">资料页</a> <br> 看老师的店铺图好像没有尾巴，可以做尾巴么？</td>
-          <td><label> <input type="checkbox" data-key="pramanix_the_prerita_confirm"> 能做！</label><br><textarea data-key="pramanix_the_prerita_price_note" placeholder="价格/备注"></textarea><br><label><input type="checkbox" data-key="pramanix_the_prerita_extra_confirm" > 能做，带大尾巴！</label><br><textarea data-key="pramanix_the_prerita_extra_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="pramanix_the_prerita_x"> 遗憾离场</label></td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/b/be/dbck9ftyk9kprif5e6vhm7iv1gokr58.png" alt="圣聆初雪 原皮"><br><strong>小人</strong><br><video src="assets/sprites/pramanix-the-prerita.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E5%9C%A3%E8%81%86%E5%88%9D%E9%9B%AA" target="_blank" rel="noreferrer">资料页</a> <br> 看老师的店铺图好像没有尾巴，可以做尾巴么？</td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="pramanix_the_prerita_confirm"> 能做！</label><textarea data-key="pramanix_the_prerita_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option"><label><input type="checkbox" data-key="pramanix_the_prerita_extra_confirm" > 能做，带大尾巴！</label><textarea data-key="pramanix_the_prerita_extra_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="pramanix_the_prerita_x"> 遗憾离场</label></div></td>
         </tr>
         <tr>
           <td>初雪 (Pramanix)</td>
-          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/7/72/f6cnedmrg2wji26n88u8cyx4hmmbs73.png" alt="初雪 原皮"></td>
-          <td><a href="https://wiki.biligame.com/arknights/初雪" target="_blank" rel="noreferrer">资料页</a> <br></td>
-          <td><label> <input type="checkbox" data-key="pramanix_confirm"> 能做！</label><br><textarea data-key="pramanix_price_note" placeholder="价格/备注"></textarea><br><label><input type="checkbox" data-key="pramanix_extra_confirm" > 能做，带大尾巴！</label><br><textarea data-key="pramanix_extra_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="pramanix_x"> 遗憾离场</label></td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/7/72/f6cnedmrg2wji26n88u8cyx4hmmbs73.png" alt="初雪 原皮"><br><strong>小人</strong><br><video src="assets/sprites/pramanix.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E5%88%9D%E9%9B%AA" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="pramanix_confirm"> 能做！</label><textarea data-key="pramanix_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option"><label><input type="checkbox" data-key="pramanix_extra_confirm" > 能做，带大尾巴！</label><textarea data-key="pramanix_extra_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="pramanix_x"> 遗憾离场</label></div></td>
         </tr>
         <tr>
           <td>耶拉 (Kjera)</td>
-          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/1/12/k7mg8siasqjru61gzov40rsticys8k2.png" alt="初雪 原皮"></td>
-          <td><a href="https://wiki.biligame.com/arknights/耶拉" target="_blank" rel="noreferrer">资料页</a> <br> 耶拉也辛苦老师确认能不能做一个比较明显的尾巴</td>
-          <td><label> <input type="checkbox" data-key="kjera_confirm"> 能做！</label><br><textarea data-key="kjera_price_note" placeholder="价格/备注"></textarea><br><label><input type="checkbox" data-key="kjera_extra_confirm" > 能做，带尾巴！</label><br><textarea data-key="kjera_extra_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="kjera_x"> 遗憾离场</label></td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/1/12/k7mg8siasqjru61gzov40rsticys8k2.png" alt="初雪 原皮"><br><strong>小人</strong><br><video src="assets/sprites/kjera.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E8%80%B6%E6%8B%89" target="_blank" rel="noreferrer">资料页</a> <br> 耶拉也辛苦老师确认能不能做一个比较明显的尾巴</td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="kjera_confirm"> 能做！</label><textarea data-key="kjera_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option"><label><input type="checkbox" data-key="kjera_extra_confirm" > 能做，带尾巴！</label><textarea data-key="kjera_extra_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="kjera_x"> 遗憾离场</label></div></td>
         </tr>
       </tbody>
     </table>
@@ -225,44 +530,44 @@
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th>名称</th><th>资料</th><th>需求备注</th><th>沟通备注</th></tr>
+        <tr><th>人物</th><th>资料</th><th>需求备注</th><th>沟通备注</th></tr>
       </thead>
       <tbody>
         <tr>
           <td>斯卡蒂 (Skadi)</td>
-          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/1/1d/qygfq794gfvyd4amopn94zl4ex2zsf5.png" alt="Skadi 原皮"></td>
-          <td><a href="https://wiki.biligame.com/arknights/%E6%96%AF%E5%8D%A1%E8%92%82" target="_blank" rel="noreferrer">资料页</a> <br></td>
-          <td><label> <input type="checkbox" data-key="skadi_confirm"> 能做！</label><br><textarea data-key="skadi_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="skadi_x"> 遗憾离场</label></td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/1/1d/qygfq794gfvyd4amopn94zl4ex2zsf5.png" alt="Skadi 原皮"><br><strong>小人</strong><br><video src="assets/sprites/skadi.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E6%96%AF%E5%8D%A1%E8%92%82" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="skadi_confirm"> 能做！</label><textarea data-key="skadi_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="skadi_x"> 遗憾离场</label></div></td>
         </tr>
         <tr>
           <td>浊心斯卡蒂 (Skadi the Corrupting Heart)</td>
-          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/2/2c/2v07otjhojakcmp08h5c0hyzscxqvxl.png" alt="Skadi the Corrupting Heart 原皮"></td>
-          <td><a href="https://wiki.biligame.com/arknights/%E6%B5%8A%E5%BF%83%E6%96%AF%E5%8D%A1%E8%92%82" target="_blank" rel="noreferrer">资料页</a> <br></td>
-          <td><label> <input type="checkbox" data-key="skadi_the_corrupting_heart_confirm"> 能做！</label><br><textarea data-key="skadi_the_corrupting_heart_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="skadi_the_corrupting_heart_x"> 遗憾离场</label></td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/2/2c/2v07otjhojakcmp08h5c0hyzscxqvxl.png" alt="Skadi the Corrupting Heart 原皮"><br><strong>小人</strong><br><video src="assets/sprites/skadi-the-corrupting-heart.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E6%B5%8A%E5%BF%83%E6%96%AF%E5%8D%A1%E8%92%82" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="skadi_the_corrupting_heart_confirm"> 能做！</label><textarea data-key="skadi_the_corrupting_heart_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="skadi_the_corrupting_heart_x"> 遗憾离场</label></div></td>
         </tr>
         <tr>
           <td>幽灵鲨 (Specter)</td>
-          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/3/34/2ciashrlz9m3vuz9pwlu9lh7z4mmqaw.png" alt="Specter 原皮"></td>
-          <td><a href="https://wiki.biligame.com/arknights/%E5%B9%BD%E7%81%B5%E9%B2%A8" target="_blank" rel="noreferrer">资料页</a> <br> 帽子能不能有两边的“鱼鳍”</td>
-          <td><label> <input type="checkbox" data-key="specter_confirm"> 能做！</label><br><textarea data-key="specter_price_note" placeholder="价格/备注"></textarea><br><label><input type="checkbox" data-key="specter_extra_confirm" > 能做，带“鱼鳍”</label><br><textarea data-key="specter_extra_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="specter_x"> 遗憾离场</label></td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/3/34/2ciashrlz9m3vuz9pwlu9lh7z4mmqaw.png" alt="Specter 原皮"><br><strong>小人</strong><br><video src="assets/sprites/specter.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E5%B9%BD%E7%81%B5%E9%B2%A8" target="_blank" rel="noreferrer">资料页</a> <br> 帽子能不能有两边的“鱼鳍”</td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="specter_confirm"> 能做！</label><textarea data-key="specter_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option"><label><input type="checkbox" data-key="specter_extra_confirm" > 能做，带“鱼鳍”</label><textarea data-key="specter_extra_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="specter_x"> 遗憾离场</label></div></td>
         </tr>
         <tr>
           <td>归溟幽灵鲨 (Specter the Unchained)</td>
-          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/a/a1/kboom0culj31ak43tq186q7167jo5nu.png" alt="Specter the Unchained 原皮"></td>
-          <td><a href="https://wiki.biligame.com/arknights/%E5%BD%92%E6%BA%9F%E5%B9%BD%E7%81%B5%E9%B2%A8" target="_blank" rel="noreferrer">资料页</a> <br></td>
-          <td><label> <input type="checkbox" data-key="specter_the_unchained_confirm"> 能做！</label><br><textarea data-key="specter_the_unchained_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="specter_the_unchained_x"> 遗憾离场</label></td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/a/a1/kboom0culj31ak43tq186q7167jo5nu.png" alt="Specter the Unchained 原皮"><br><strong>小人</strong><br><video src="assets/sprites/specter-the-unchained.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E5%BD%92%E6%BA%9F%E5%B9%BD%E7%81%B5%E9%B2%A8" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="specter_the_unchained_confirm"> 能做！</label><textarea data-key="specter_the_unchained_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="specter_the_unchained_x"> 遗憾离场</label></div></td>
         </tr>
         <tr>
           <td>歌蕾蒂娅 (Gladiia)</td>
-          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/8/83/hymnabevpcdpqqfsrb1qikvoctvx4oe.png" alt="Gladiia 原皮"></td>
-          <td><a href="https://wiki.biligame.com/arknights/%E6%AD%8C%E8%95%BE%E8%92%82%E5%A8%85" target="_blank" rel="noreferrer">资料页</a> <br></td>
-          <td><label> <input type="checkbox" data-key="gladiia_confirm"> 能做！</label><br><textarea data-key="gladiia_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="gladiia_x"> 遗憾离场</label></td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/8/83/hymnabevpcdpqqfsrb1qikvoctvx4oe.png" alt="Gladiia 原皮"><br><strong>小人</strong><br><video src="assets/sprites/gladiia.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E6%AD%8C%E8%95%BE%E8%92%82%E5%A8%85" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="gladiia_confirm"> 能做！</label><textarea data-key="gladiia_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="gladiia_x"> 遗憾离场</label></div></td>
         </tr>
         <tr>
           <td>乌尔比安 (Ulpianus)</td>
-          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/3/3e/66vfs81vvu00l09pcgnps26f28vmbzc.png" alt="Ulpianus 原皮"></td>
-          <td><a href="https://wiki.biligame.com/arknights/%E4%B9%8C%E5%B0%94%E6%AF%94%E5%AE%89" target="_blank" rel="noreferrer">资料页</a> <br> 能不能做武器？</td>
-          <td><label> <input type="checkbox" data-key="ulpianus_confirm"> 能做！</label><br><textarea data-key="ulpianus_price_note" placeholder="价格/备注"></textarea><br><label><input type="checkbox" data-key="ulpianus_extra_confirm" > 能做，带船锚！</label><br><textarea data-key="ulpianus_extra_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="ulpianus_x"> 遗憾离场</label></td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/3/3e/66vfs81vvu00l09pcgnps26f28vmbzc.png" alt="Ulpianus 原皮"><br><strong>小人</strong><br><video src="assets/sprites/ulpianus.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E4%B9%8C%E5%B0%94%E6%AF%94%E5%AE%89" target="_blank" rel="noreferrer">资料页</a> <br> 能不能做武器？</td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="ulpianus_confirm"> 能做！</label><textarea data-key="ulpianus_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option"><label><input type="checkbox" data-key="ulpianus_extra_confirm" > 能做，带船锚！</label><textarea data-key="ulpianus_extra_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="ulpianus_x"> 遗憾离场</label></div></td>
         </tr>
       </tbody>
     </table>
@@ -271,65 +576,255 @@
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th>名称</th><th>资料</th><th>需求备注</th><th>沟通备注</th></tr>
+        <tr><th>人物</th><th>资料</th><th>需求备注</th><th>沟通备注</th></tr>
       </thead>
       <tbody>
         <tr>
           <td>新约能天使 (Exusiai the New Covenant)</td>
-          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/5/51/mcykogoq3phi70qshmt51bajjf5fblq.png" alt="新约能天使 原皮"></td>
-          <td><a href="https://wiki.biligame.com/arknights/%E6%96%B0%E7%BA%A6%E8%83%BD%E5%A4%A9%E4%BD%BF" target="_blank" rel="noreferrer">资料页</a> <br></td>
-          <td><label> <input type="checkbox" data-key="exusiai_the_new_covenant_default_confirm"> 能做！</label><br><textarea data-key="exusiai_the_new_covenant_default_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="exusiai_the_new_covenant_default_x"> 遗憾离场</label></td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/5/51/mcykogoq3phi70qshmt51bajjf5fblq.png" alt="新约能天使 原皮"><br><strong>小人</strong><br><video src="assets/sprites/exusiai-the-new-covenant.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E6%96%B0%E7%BA%A6%E8%83%BD%E5%A4%A9%E4%BD%BF" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="exusiai_the_new_covenant_default_confirm"> 能做！</label><textarea data-key="exusiai_the_new_covenant_default_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="exusiai_the_new_covenant_default_x"> 遗憾离场</label></div></td>
         </tr>
         <tr>
           <td>蕾缪安 (Lemuen)</td>
-          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/5/5e/fk6207iumwrkw0da7mukqhzt1gga3ac.png" alt="蕾缪安 原皮"></td>
-          <td><a href="https://wiki.biligame.com/arknights/%E8%95%BE%E7%BC%AA%E5%AE%89" target="_blank" rel="noreferrer">资料页</a> <br></td>
-          <td><label> <input type="checkbox" data-key="lemuen_default_confirm"> 能做！</label><br><textarea data-key="lemuen_default_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="lemuen_default_x"> 遗憾离场</label></td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/5/5e/fk6207iumwrkw0da7mukqhzt1gga3ac.png" alt="蕾缪安 原皮"><br><strong>小人</strong><br><video src="assets/sprites/lemuen.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E8%95%BE%E7%BC%AA%E5%AE%89" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="lemuen_default_confirm"> 能做！</label><textarea data-key="lemuen_default_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="lemuen_default_x"> 遗憾离场</label></div></td>
         </tr>
         <tr>
           <td>莫斯提马 (Mostima)</td>
-          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/7/7c/djqqx01lhr0faf3yncor18p0ltwwbyt.png" alt="莫斯提马 原皮"></td>
-          <td><a href="https://wiki.biligame.com/arknights/%E8%8E%AB%E6%96%AF%E6%8F%90%E9%A9%AC" target="_blank" rel="noreferrer">资料页</a> <br> 光环需要换黑色</td>
-          <td><label> <input type="checkbox" data-key="mostima_default_confirm"> 能做！</label><br><textarea data-key="mostima_default_price_note" placeholder="价格/备注"></textarea><br><label><input type="checkbox" data-key="mostima_default_black_halo_confirm" > 能换黑色！</label><br><textarea data-key="mostima_default_black_halo_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="mostima_default_x"> 遗憾离场</label></td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/7/7c/djqqx01lhr0faf3yncor18p0ltwwbyt.png" alt="莫斯提马 原皮"><br><strong>小人</strong><br><video src="assets/sprites/mostima.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E8%8E%AB%E6%96%AF%E6%8F%90%E9%A9%AC" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="mostima_default_confirm"> 能做！</label><textarea data-key="mostima_default_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="mostima_default_x"> 遗憾离场</label></div></td>
         </tr>
         <tr>
           <td>菲亚梅塔 (Fiammetta)</td>
-          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/2/24/dx1kba5fwygcoqn38xfcrx0qknsxowz.png" alt="菲亚梅塔 原皮"></td>
-          <td><a href="https://wiki.biligame.com/arknights/%E8%8F%B2%E4%BA%9A%E6%A2%85%E5%A1%94" target="_blank" rel="noreferrer">资料页</a> <br></td>
-          <td><label> <input type="checkbox" data-key="fiammetta_default_confirm"> 能做！</label><br><textarea data-key="fiammetta_default_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="fiammetta_default_x"> 遗憾离场</label></td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/2/24/dx1kba5fwygcoqn38xfcrx0qknsxowz.png" alt="菲亚梅塔 原皮"><br><strong>小人</strong><br><video src="assets/sprites/fiammetta.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E8%8F%B2%E4%BA%9A%E6%A2%85%E5%A1%94" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="fiammetta_default_confirm"> 能做！</label><textarea data-key="fiammetta_default_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="fiammetta_default_x"> 遗憾离场</label></div></td>
         </tr>
         <tr>
           <td>新约能天使 (Exusiai the New Covenant)</td>
-          <td><strong>寻翼之歌</strong><br><img src="https://patchwiki.biligame.com/images/arknights/2/2d/hay5ubcjsg43lgpj6y8whqrof7aoaav.png" alt="新约能天使 寻翼之歌"></td>
-          <td><a href="https://wiki.biligame.com/arknights/%E6%96%B0%E7%BA%A6%E8%83%BD%E5%A4%A9%E4%BD%BF" target="_blank" rel="noreferrer">资料页</a> <br></td>
-          <td><label> <input type="checkbox" data-key="exusiai_the_new_covenant_wing_song_confirm"> 能做！</label><br><textarea data-key="exusiai_the_new_covenant_wing_song_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="exusiai_the_new_covenant_wing_song_x"> 遗憾离场</label></td>
+          <td><strong>寻翼之歌</strong><br><img src="https://patchwiki.biligame.com/images/arknights/2/2d/hay5ubcjsg43lgpj6y8whqrof7aoaav.png" alt="新约能天使 寻翼之歌"><br><strong>小人</strong><br><video src="assets/sprites/exusiai-the-new-covenant-skin-1.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E6%96%B0%E7%BA%A6%E8%83%BD%E5%A4%A9%E4%BD%BF" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="exusiai_the_new_covenant_wing_song_confirm"> 能做！</label><textarea data-key="exusiai_the_new_covenant_wing_song_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="exusiai_the_new_covenant_wing_song_x"> 遗憾离场</label></div></td>
         </tr>
         <tr>
           <td>蕾缪安 (Lemuen)</td>
-          <td><strong>暮星安魂曲</strong><br><img src="https://patchwiki.biligame.com/images/arknights/2/2e/b0kdja5jrqvn9e0emfuy6tnres5mnyy.png" alt="蕾缪安 暮星安魂曲"></td>
-          <td><a href="https://wiki.biligame.com/arknights/%E8%95%BE%E7%BC%AA%E5%AE%89" target="_blank" rel="noreferrer">资料页</a> <br></td>
-          <td><label> <input type="checkbox" data-key="lemuen_requiem_confirm"> 能做！</label><br><textarea data-key="lemuen_requiem_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="lemuen_requiem_x"> 遗憾离场</label></td>
+          <td><strong>暮星安魂曲</strong><br><img src="https://patchwiki.biligame.com/images/arknights/2/2e/b0kdja5jrqvn9e0emfuy6tnres5mnyy.png" alt="蕾缪安 暮星安魂曲"><br><strong>小人</strong><br><video src="assets/sprites/lemuen-skin-1.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E8%95%BE%E7%BC%AA%E5%AE%89" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="lemuen_requiem_confirm"> 能做！</label><textarea data-key="lemuen_requiem_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="lemuen_requiem_x"> 遗憾离场</label></div></td>
         </tr>
         <tr>
           <td>莫斯提马 (Mostima)</td>
-          <td><strong>幻语乐痕</strong><br><img src="https://patchwiki.biligame.com/images/arknights/d/d3/dl1dq7zlcwxhdg5bkky2hkpyfiqfo60.png" alt="莫斯提马 幻语乐痕"></td>
-          <td><a href="https://wiki.biligame.com/arknights/%E8%8E%AB%E6%96%AF%E6%8F%90%E9%A9%AC" target="_blank" rel="noreferrer">资料页</a> <br> 光环需要换黑色</td>
-          <td><label> <input type="checkbox" data-key="mostima_music_trace_confirm"> 能做！</label><br><textarea data-key="mostima_music_trace_price_note" placeholder="价格/备注"></textarea><br><label><input type="checkbox" data-key="mostima_music_trace_black_halo_confirm" > 能换黑色！</label><br><textarea data-key="mostima_music_trace_black_halo_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="mostima_music_trace_x"> 遗憾离场</label></td>
+          <td><strong>幻语乐痕</strong><br><img src="https://patchwiki.biligame.com/images/arknights/d/d3/dl1dq7zlcwxhdg5bkky2hkpyfiqfo60.png" alt="莫斯提马 幻语乐痕"><br><strong>小人</strong><br><video src="assets/sprites/mostima-skin-2.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E8%8E%AB%E6%96%AF%E6%8F%90%E9%A9%AC" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="mostima_music_trace_confirm"> 能做！</label><textarea data-key="mostima_music_trace_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="mostima_music_trace_x"> 遗憾离场</label></div></td>
         </tr>
         <tr>
           <td>菲亚梅塔 (Fiammetta)</td>
-          <td><strong>至圣誓言</strong><br><img src="https://patchwiki.biligame.com/images/arknights/1/13/f4c4cc3tjqqxfpn0813pfforiosfe08.png" alt="菲亚梅塔 至圣誓言"></td>
-          <td><a href="https://wiki.biligame.com/arknights/%E8%8F%B2%E4%BA%9A%E6%A2%85%E5%A1%94" target="_blank" rel="noreferrer">资料页</a> <br></td>
-          <td><label> <input type="checkbox" data-key="fiammetta_holy_vow_confirm"> 能做！</label><br><textarea data-key="fiammetta_holy_vow_price_note" placeholder="价格/备注"></textarea><label><input type="checkbox" data-key="fiammetta_holy_vow_x"> 遗憾离场</label></td>
+          <td><strong>至圣誓言</strong><br><img src="https://patchwiki.biligame.com/images/arknights/1/13/f4c4cc3tjqqxfpn0813pfforiosfe08.png" alt="菲亚梅塔 至圣誓言"><br><strong>小人</strong><br><video src="assets/sprites/fiammetta-skin-2.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E8%8F%B2%E4%BA%9A%E6%A2%85%E5%A1%94" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="fiammetta_holy_vow_confirm"> 能做！</label><textarea data-key="fiammetta_holy_vow_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="fiammetta_holy_vow_x"> 遗憾离场</label></div></td>
         </tr>
       </tbody>
     </table>
   </div>
+  <h2>乌萨斯熊团（6）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>人物</th><th>资料</th><th>需求备注</th><th>沟通备注</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>凛冬 (Zima)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/c/c6/imc56l8zpg4eurap1g4twlg4qrurex8.png" alt="凛冬 原皮"><br><strong>小人</strong><br><video src="assets/sprites/zima.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E5%87%9B%E5%86%AC" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="zima_confirm"> 能做！</label><textarea data-key="zima_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="zima_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>真理 (Istina)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/6/63/0ozruvu1dsyohmjwadurafeupeitxks.png" alt="真理 原皮"><br><strong>小人</strong><br><video src="assets/sprites/istina.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E7%9C%9F%E7%90%86" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="istina_confirm"> 能做！</label><textarea data-key="istina_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="istina_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>古米 (Gummy)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/1/14/hcrrkpg4f6y5599cxyb55utd71xxbi5.png" alt="古米 原皮"><br><strong>小人</strong><br><video src="assets/sprites/gummy.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E5%8F%A4%E7%B1%B3" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="gummy_confirm"> 能做！</label><textarea data-key="gummy_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="gummy_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>早露 (Rosa)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/d/d1/r3o28hj9au02lp8qgrlc5o48fp3fgbu.png" alt="早露 原皮"><br><strong>小人</strong><br><video src="assets/sprites/rosa.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E6%97%A9%E9%9C%B2" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="rosa_confirm"> 能做！</label><textarea data-key="rosa_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="rosa_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>烈夏 (Leto)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/c/cc/qs88e9nf5szgx1sz1ulchol545fz5am.png" alt="烈夏 原皮"><br><strong>小人</strong><br><video src="assets/sprites/leto.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E7%83%88%E5%A4%8F" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="leto_confirm"> 能做！</label><textarea data-key="leto_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="leto_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>苦艾 (Absinthe)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/8/8b/elv1aq913kpqjsndw1h98fqtgfh95ql.png" alt="苦艾 原皮"><br><strong>小人</strong><br><video src="assets/sprites/absinthe.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E8%8B%A6%E8%89%BE" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="absinthe_confirm"> 能做！</label><textarea data-key="absinthe_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="absinthe_x"> 遗憾离场</label></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h2>罗德岛（20）</h2>
+  <section class="intro-note">这一组里有一些角色和敌方单位比较小众，官方资料也有缺失或不够集中，可能光靠名字不太容易判断形象。这里补充了很多同人，或者只有小人参考，辛苦老师看看。</section>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>人物</th><th>资料</th><th>需求备注</th><th>沟通备注</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>煌 (Blaze)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/5/57/3e9cwu4tcbfzbw2qgwugmu557hnshny.png" alt="煌 原皮"><br><strong>小人</strong><br><video src="assets/sprites/blaze.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E7%85%8C" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="blaze_confirm"> 能做！</label><textarea data-key="blaze_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="blaze_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>迷迭香 (Rosmontis)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/1/13/ccihpi0pm9ij723smu29qfdll03pvbg.png" alt="迷迭香 原皮"><br><strong>小人</strong><br><video src="assets/sprites/rosmontis.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E8%BF%B7%E8%BF%AD%E9%A6%99" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="rosmontis_confirm"> 能做！</label><textarea data-key="rosmontis_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="rosmontis_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>逻各斯 (Logos)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/9/99/nqd3f3p6zck7nbhrfr26dp3p7p54mjh.png" alt="逻各斯 原皮"><br><strong>小人</strong><br><video src="assets/sprites/logos.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E9%80%BB%E5%90%84%E6%96%AF" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="logos_confirm"> 能做！</label><textarea data-key="logos_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="logos_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>电弧 (Raidian)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/b/bf/b3xivmtv7bak1qobkm7f79g5us8edra.png" alt="电弧 原皮"><br><strong>小人</strong><br><video src="assets/sprites/raidian.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E7%94%B5%E5%BC%A7" target="_blank" rel="noreferrer">资料页</a> <br> 电弧还有两只手叫小树和小轴，辛苦老师看看能不能一起做</td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="raidian_confirm"> 能做！</label><textarea data-key="raidian_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option"><label><input type="checkbox" data-key="raidian_extra_confirm" > 能做，带小树和小轴！</label><textarea data-key="raidian_extra_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="raidian_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>真言 (Mantra)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/4/47/rgx7cl36ec48s2qkkgmuggr2a3w2uml.png" alt="真言 原皮"><br><strong>小人</strong><br><video src="assets/sprites/mantra.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E7%9C%9F%E8%A8%80" target="_blank" rel="noreferrer">资料页</a> <br> 真言也辛苦老师确认能不能做一个比较明显的尾巴</td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="mantra_confirm"> 能做！</label><textarea data-key="mantra_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option"><label><input type="checkbox" data-key="mantra_extra_confirm" > 能做，带尾巴！</label><textarea data-key="mantra_extra_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="mantra_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>术髓 (Pith)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/a/ac/pif7gq8cq27x600pku9e0gfy3od738r.png" alt="术髓 原皮"><br><strong>小人</strong><br><video src="assets/sprites/pith.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E6%9C%AF%E9%AB%93" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="pith_confirm"> 能做！</label><textarea data-key="pith_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="pith_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>锋刃 (Sharp)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/9/9e/7xbtc9dpu2u3iera6jz6epu8q3431p7.png" alt="锋刃 原皮"><br><strong>小人</strong><br><video src="assets/sprites/sharp.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E9%94%8B%E5%88%83" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="sharp_confirm"> 能做！</label><textarea data-key="sharp_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="sharp_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>风暴眼 (Stormeye)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/c/c5/iw7simcn616w1w25a3pqujoign9rj28.png" alt="风暴眼 原皮"><br><strong>小人</strong><br><video src="assets/sprites/stormeye.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E9%A3%8E%E6%9A%B4%E7%9C%BC" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="stormeye_confirm"> 能做！</label><textarea data-key="stormeye_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="stormeye_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>触痕 (Touch)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/1/12/hbib2lwz9a0rr979uf1u3eafmsozwx8.png" alt="触痕 原皮"><br><strong>小人</strong><br><video src="assets/sprites/touch.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E8%A7%A6%E7%97%95" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="touch_confirm"> 能做！</label><textarea data-key="touch_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="touch_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>Ace (Ace)</td>
+          <td><strong>剧情立绘</strong><br><img src="https://media.prts.wiki/thumb/9/95/Avg_char_014_riope.png/335px-Avg_char_014_riope.png?v=9hc0aypj1z9277054i313wiegjyd70r" alt="Ace 剧情立绘"><br><strong>同人小人参考</strong><br><img src="assets/images/ace-fan-sprite-reference.jpg" alt="Ace 同人小人参考"></td>
+          <td><a href="https://prts.wiki/w/Ace" target="_blank" rel="noreferrer">资料页</a> <br> <a href="https://x.com/TheMadMimic/status/1479996347612729346?s=20" target="_blank" rel="noreferrer">小人参考来源</a></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="ace_confirm"> 能做！</label><textarea data-key="ace_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="ace_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>Scout (Scout)</td>
+          <td><strong>剧情立绘</strong><br><img src="https://media.prts.wiki/thumb/0/06/Avg_avg_npc_026.png/335px-Avg_avg_npc_026.png?v=cb1s4ub5mdg5467vj2makou9ij81v47" alt="Scout 剧情立绘"><br><strong>同人小人参考</strong><br><img src="assets/images/scout-fan-sprite-reference.jpg" alt="Scout 同人小人参考"></td>
+          <td><a href="https://prts.wiki/w/Scout" target="_blank" rel="noreferrer">资料页</a> <br> <a href="https://x.com/TheMadMimic/status/1479996347612729346?s=20" target="_blank" rel="noreferrer">小人参考来源</a></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="scout_confirm"> 能做！</label><textarea data-key="scout_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="scout_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>Outcast (Outcast)</td>
+          <td><strong>剧情立绘</strong><br><img src="https://media.prts.wiki/thumb/2/24/Avg_avg_npc_245_1-1.png/300px-Avg_avg_npc_245_1-1.png?v=3xxi6o63kol12atst0shfgzhglk0zk4" alt="Outcast 剧情立绘"></td>
+          <td><a href="https://prts.wiki/w/Outcast" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="outcast_confirm"> 能做！</label><textarea data-key="outcast_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="outcast_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>Misery (Misery)</td>
+          <td><strong>剧情立绘</strong><br><img src="https://media.prts.wiki/thumb/2/23/Avg_avg_npc_235.png/300px-Avg_avg_npc_235.png?v=ibypdyks7ngfpv6v5m2qabme5avb723" alt="Misery 剧情立绘"><br><strong>战斗小人参考</strong><br><img src="assets/images/misery-silent-blade-sprite.png" alt="Misery 战斗小人参考"><br><strong>战斗小人动画</strong><br><video src="assets/sprites/misery.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/Misery" target="_blank" rel="noreferrer">资料页</a> <br> 如果能做的话，Misery 想做 4 个，辛苦老师按 4 个一起备注/报价</td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="misery_confirm"> 能做！</label><textarea data-key="misery_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="misery_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>机械师 (Mechanist)</td>
+          <td><strong>剧情立绘</strong><br><img src="https://media.prts.wiki/thumb/d/db/Avg_avg_npc_521_1%241.png/300px-Avg_avg_npc_521_1%241.png?v=seo6vt9vkfbmlif2qbsd4o2ubrn9wp1" alt="机械师 剧情立绘"><br><strong>战斗小人参考</strong><br><img src="assets/images/mechanist-mechanical-mind-sprite.png" alt="机械师 战斗小人参考"><br><strong>战斗小人动画</strong><br><video src="assets/sprites/mechanist.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/Mechanist" target="_blank" rel="noreferrer">资料页</a> <br></td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="mechanist_confirm"> 能做！</label><textarea data-key="mechanist_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="mechanist_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>文档 (Document)</td>
+          <td><strong>战斗小人参考</strong><br><img src="assets/images/document-sprite.png" alt="文档 战斗小人参考"><br><strong>战斗小人动画</strong><br><video src="assets/sprites/vector-breakthrough/document.webm" autoplay muted loop playsinline></video><br><strong>氛围合照参考</strong><br><img src="assets/images/vector-breakthrough-reference.jpg" alt="矢量突破 氛围合照参考"></td>
+          <td><a href="https://prts.wiki/w/%E6%96%87%E6%A1%A3" target="_blank" rel="noreferrer">资料页</a> <br> 矢量突破敌方单位参考；合照用于补充整体配色和氛围</td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="document_confirm"> 能做！</label><textarea data-key="document_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="document_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>叶毯 (Leafcarpet)</td>
+          <td><strong>战斗小人参考</strong><br><img src="assets/images/leafcarpet-sprite.png" alt="叶毯 战斗小人参考"><br><strong>战斗小人动画</strong><br><video src="assets/sprites/vector-breakthrough/leafcarpet.webm" autoplay muted loop playsinline></video><br><strong>氛围合照参考</strong><br><img src="assets/images/vector-breakthrough-reference.jpg" alt="矢量突破 氛围合照参考"></td>
+          <td><a href="https://prts.wiki/w/%E5%8F%B6%E6%AF%AF" target="_blank" rel="noreferrer">资料页</a> <br> 矢量突破敌方单位参考；合照用于补充整体配色和氛围</td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="leafcarpet_confirm"> 能做！</label><textarea data-key="leafcarpet_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="leafcarpet_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>秒表 (Stopwatch)</td>
+          <td><strong>战斗小人参考</strong><br><img src="assets/images/stopwatch-sprite.png" alt="秒表 战斗小人参考"><br><strong>战斗小人动画</strong><br><video src="assets/sprites/vector-breakthrough/stopwatch.webm" autoplay muted loop playsinline></video><br><strong>氛围合照参考</strong><br><img src="assets/images/vector-breakthrough-reference.jpg" alt="矢量突破 氛围合照参考"></td>
+          <td><a href="https://prts.wiki/w/%E7%A7%92%E8%A1%A8" target="_blank" rel="noreferrer">资料页</a> <br> 矢量突破敌方单位参考；合照用于补充整体配色和氛围</td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="stopwatch_confirm"> 能做！</label><textarea data-key="stopwatch_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="stopwatch_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>巨声 (Uproar)</td>
+          <td><strong>战斗小人参考</strong><br><img src="assets/images/uproar-sprite.png" alt="巨声 战斗小人参考"><br><strong>战斗小人动画</strong><br><video src="assets/sprites/vector-breakthrough/uproar.webm" autoplay muted loop playsinline></video><br><strong>氛围合照参考</strong><br><img src="assets/images/vector-breakthrough-reference.jpg" alt="矢量突破 氛围合照参考"></td>
+          <td><a href="https://prts.wiki/w/%E5%B7%A8%E5%A3%B0" target="_blank" rel="noreferrer">资料页</a> <br> 矢量突破敌方单位参考；合照用于补充整体配色和氛围</td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="uproar_confirm"> 能做！</label><textarea data-key="uproar_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="uproar_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>白匠 (Whitesmith)</td>
+          <td><strong>漫画插图</strong><br><img src="https://arknights.wiki.gg/images/Whitesmith.png?65ce48" alt="白匠 漫画插图"><br><strong>剧情截图参考</strong><br><img src="assets/images/whitesmith-reference.jpg" alt="白匠 剧情截图参考"><br><strong>形象参考</strong><br><img src="assets/images/whitesmith-character-reference.png" alt="白匠 形象参考"><br><strong>面部参考</strong><br><img src="assets/images/whitesmith-face-reference.png" alt="白匠 面部参考"></td>
+          <td><a href="https://prts.wiki/w/%E7%99%BD%E5%8C%A0" target="_blank" rel="noreferrer">资料页</a> <br> 漫画角色，追加剧情截图和形象参考供判断；制作时希望突出眼睛和眼周的原石痕迹</td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="whitesmith_confirm"> 能做！</label><textarea data-key="whitesmith_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="whitesmith_x"> 遗憾离场</label></div></td>
+        </tr>
+        <tr>
+          <td>郁金香 (Tulip)</td>
+          <td><strong>原皮</strong><br><img src="https://patchwiki.biligame.com/images/arknights/a/ad/bhf1ie5l28ed873ypou7aofth78ymbh.png" alt="郁金香 原皮"><br><strong>小人</strong><br><video src="assets/sprites/tulip.webm" autoplay muted loop playsinline></video></td>
+          <td><a href="https://prts.wiki/w/%E9%83%81%E9%87%91%E9%A6%99" target="_blank" rel="noreferrer">资料页</a> <br> 如果能做的话，郁金香想做 2 个，辛苦老师按 2 个一起备注/报价</td>
+          <td><div class="quote-option"><label> <input type="checkbox" data-key="tulip_confirm"> 能做！</label><textarea data-key="tulip_price_note" placeholder="价格/备注"></textarea></div><div class="quote-option quote-option-reject"><label><input type="checkbox" data-key="tulip_x"> 遗憾离场</label></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    <section class="overall-note">
+      <label>
+        <span class="overall-note-title">整体排期 / 其他备注</span>
+        <span class="overall-note-hint">老师方便的话，可以在这里写大概什么时候能开始、是否适合按阵营分批制作/交付，或其他需要我确认的地方。</span>
+        <textarea data-key="overall_schedule_note" placeholder="整体排期 / 其他备注"></textarea>
+      </label>
+    </section>
     <div class="actions">
       <div class="status" id="submitStatus" role="status"></div>
       <button id="submitQuote" type="button">保存到PRTS（不是</button>
     </div>
   </main>
+
+  <div class="lightbox" id="imageLightbox" aria-hidden="true">
+    <button type="button" id="closeLightbox" aria-label="关闭大图">×</button>
+    <img id="lightboxImage" alt="" hidden>
+    <video id="lightboxVideo" autoplay muted loop playsinline hidden></video>
+  </div>
 
   <script>
     const supabaseConfig = {
@@ -341,6 +836,132 @@
     const storagePrefix = "arknight-grapples-quote:";
     const submitButton = document.querySelector("#submitQuote");
     const submitStatus = document.querySelector("#submitStatus");
+    const lightbox = document.querySelector("#imageLightbox");
+    const lightboxImage = document.querySelector("#lightboxImage");
+    const lightboxVideo = document.querySelector("#lightboxVideo");
+    const closeLightbox = document.querySelector("#closeLightbox");
+
+    document.querySelectorAll("h2").forEach((heading) => {
+      let section = heading.nextElementSibling;
+
+      while (section && !section.classList.contains("table-wrap")) {
+        section = section.nextElementSibling;
+      }
+
+      if (!section?.classList.contains("table-wrap")) {
+        return;
+      }
+
+      heading.classList.add("section-toggle");
+      heading.tabIndex = 0;
+
+      function toggleSection() {
+        const isCollapsed = section.hidden;
+        section.hidden = !isCollapsed;
+        heading.classList.toggle("is-collapsed", !isCollapsed);
+      }
+
+      heading.addEventListener("click", toggleSection);
+      heading.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          toggleSection();
+        }
+      });
+    });
+
+    function syncMobileCards() {
+      const isMobile = matchMedia("(max-width: 720px)").matches;
+
+      document.querySelectorAll("tbody tr").forEach((row) => {
+        row.classList.toggle("mobile-collapsible", isMobile);
+
+        if (!isMobile) {
+          row.classList.remove("is-expanded");
+        }
+      });
+    }
+
+    syncMobileCards();
+    addEventListener("resize", syncMobileCards);
+
+    document.querySelectorAll("tbody tr").forEach((row) => {
+      const nameCell = row.querySelector("td:first-child");
+      const skin = row.querySelector("td:nth-child(2) strong")?.textContent.trim();
+
+      if (nameCell && skin && !nameCell.querySelector(".mobile-skin")) {
+        const skinLabel = document.createElement("span");
+        skinLabel.className = "mobile-skin";
+        skinLabel.textContent = skin;
+        nameCell.append(skinLabel);
+      }
+
+      nameCell?.addEventListener("click", () => {
+        if (!row.classList.contains("mobile-collapsible")) {
+          return;
+        }
+
+        const expanded = row.classList.toggle("is-expanded");
+
+        if (expanded) {
+          setTimeout(() => {
+            row.scrollIntoView({ behavior: "smooth", block: "start" });
+          }, 40);
+        }
+      });
+    });
+
+    function openLightbox(image) {
+      lightboxVideo.hidden = true;
+      lightboxVideo.removeAttribute("src");
+      lightboxImage.hidden = false;
+      lightboxImage.src = image.src;
+      lightboxImage.alt = image.alt || "";
+      lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+    }
+
+    function openVideoLightbox(video) {
+      lightboxImage.hidden = true;
+      lightboxImage.removeAttribute("src");
+      lightboxImage.removeAttribute("alt");
+      lightboxVideo.hidden = false;
+      lightboxVideo.src = video.currentSrc || video.src;
+      lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+    }
+
+    function closeLightboxView() {
+      lightbox.classList.remove("is-open");
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxImage.hidden = true;
+      lightboxImage.removeAttribute("src");
+      lightboxImage.removeAttribute("alt");
+      lightboxVideo.hidden = true;
+      lightboxVideo.pause();
+      lightboxVideo.removeAttribute("src");
+    }
+
+    document.querySelectorAll("td img").forEach((image) => {
+      image.addEventListener("click", () => openLightbox(image));
+    });
+
+    document.querySelectorAll("td video").forEach((video) => {
+      video.addEventListener("click", () => openVideoLightbox(video));
+    });
+
+    closeLightbox.addEventListener("click", closeLightboxView);
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox || event.target === lightboxImage || event.target === lightboxVideo) {
+        closeLightboxView();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
+        closeLightboxView();
+      }
+    });
 
     document.querySelectorAll("[data-key]").forEach((field) => {
       const key = storagePrefix + field.dataset.key;
@@ -368,9 +989,27 @@
     function collectRow(row) {
       const cells = row.querySelectorAll("td");
       const values = {};
+      const responses = [];
 
       row.querySelectorAll("[data-key]").forEach((field) => {
-        values[field.dataset.key] = field.type === "checkbox" ? field.checked : field.value.trim();
+        const value = field.type === "checkbox" ? field.checked : field.value.trim();
+        values[field.dataset.key] = value;
+
+        if (field.type === "checkbox") {
+          responses.push({
+            key: field.dataset.key,
+            label: field.closest("label")?.textContent.trim() || field.dataset.key,
+            type: "checkbox",
+            checked: value
+          });
+        } else {
+          responses.push({
+            key: field.dataset.key,
+            label: field.placeholder || "价格/备注",
+            type: "textarea",
+            value
+          });
+        }
       });
 
       const image = cells[1]?.querySelector("img");
@@ -383,6 +1022,7 @@
         reference_url: reference?.href || "",
         image_url: image?.src || "",
         need_note: cells[2]?.textContent.trim() || "",
+        responses,
         values
       };
     }
@@ -392,6 +1032,7 @@
         teacher_name: "固定报价人",
         teacher_contact: "",
         source_page: location.pathname,
+        overall_schedule_note: document.querySelector('[data-key="overall_schedule_note"]')?.value.trim() || "",
         items: Array.from(document.querySelectorAll("tbody tr")).map(collectRow),
         submitted_at: new Date().toISOString()
       };
